@@ -1,6 +1,7 @@
 package ru.netology.kotlin032
 
 import java.lang.Exception
+import java.lang.NumberFormatException
 
 enum class Cards {Mastercard, Maestro, Visa, Mir, VK_Pay}
 
@@ -25,7 +26,7 @@ fun main() {
         var cardType: Int = 0
         try {
             cardType = userInput?.toInt()!!
-        }catch (e: Exception){
+        }catch (e: NumberFormatException){
             println("Прошу ввести корректное значение!")
             continue
         }
@@ -48,7 +49,7 @@ fun main() {
         var monthPaymentsSum: Int = 0
         try {
             monthPaymentsSum = userInput?.toInt()!!
-        }catch (e: Exception){
+        }catch (e: NumberFormatException){
             println("Прошу ввести корректное значение!")
             continue
         }
@@ -64,7 +65,7 @@ fun main() {
         var currentPayment: Int = 0
         try {
             currentPayment = userInput?.toInt()!!
-        }catch (e: Exception){
+        }catch (e: NumberFormatException){
             println("Прошу ввести корректное значение!")
             continue
         }
@@ -101,7 +102,7 @@ fun calcCommission(currentPayment: Int, card: Cards = Cards.VK_Pay, monthPayment
                 (currentPayment * 100 * 0.006).toInt() + 2_000
         }
         Cards.Visa, Cards.Mir -> {
-            val commValue: Int = (currentPayment * 100 * 0.075).toInt()
+            val commValue: Int = (currentPayment * 100 * 0.0075).toInt()
             if(commValue < 3500)
                 3500
             else
