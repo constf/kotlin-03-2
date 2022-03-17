@@ -57,8 +57,8 @@ class MainKtTest {
         // Act
         val result = calcCommission(currentPayment = testPayment, card = testCard, monthPaymentsSum = testMonthPayment)
 
-        // Assert
-            assertEquals(3_500, result)
+        // Assert, must be 3_500, we use 3_678 to illustrate the CI functionality
+            assertEquals(3_678, result)
     }
 
     @Test
@@ -263,7 +263,7 @@ class MainKtTest {
         val result = checkDaylyLimit(card = testCard, currentPayment = testDaySum)
 
         // Assert
-        assertEquals(true, result)
+        assertEquals(false, result)
     }
 
 
