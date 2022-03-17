@@ -17,6 +17,8 @@ class MainKtTest {
         assertEquals(0, result)
     }
 
+
+
     @Test
     fun calcCommission_MasMae_LessActionLimit() {
         // Arrange
@@ -104,12 +106,6 @@ class MainKtTest {
 
 
 
-
-
-
-
-
-
     @Test
     fun checkMonthlyLimit_VK_less10() {
         // Arrange
@@ -149,6 +145,46 @@ class MainKtTest {
         assertEquals(true, result)
     }
 
+    @Test
+    fun checkMonthlyLimit_Cards_less10() {
+        // Arrange
+        val testCard: Cards = Cards.Mastercard
+        val testMonthSum = CARDS_MONTH_LIMIT - 10
+
+        // Act
+        val result = ru.netology.kotlin032.checkMonthlyLimit(card = testCard, monthPaymentsSum = testMonthSum)
+
+        // Assert
+        assertEquals(true, result)
+    }
+
+    @Test
+    fun checkMonthlyLimit_Cards_more10() {
+        // Arrange
+        val testCard: Cards = Cards.Visa
+        val testMonthSum = CARDS_MONTH_LIMIT + 10
+
+        // Act
+        val result = ru.netology.kotlin032.checkMonthlyLimit(card = testCard, monthPaymentsSum = testMonthSum)
+
+        // Assert
+        assertEquals(false, result)
+    }
+
+    @Test
+    fun checkMonthlyLimit_Cards_exact() {
+        // Arrange
+        val testCard: Cards = Cards.Mir
+        val testMonthSum = CARDS_MONTH_LIMIT
+
+        // Act
+        val result = ru.netology.kotlin032.checkMonthlyLimit(card = testCard, monthPaymentsSum = testMonthSum)
+
+        // Assert
+        assertEquals(true, result)
+    }
+
+
 
 
 
@@ -183,6 +219,45 @@ class MainKtTest {
         // Arrange
         val testCard: Cards = Cards.VK_Pay
         val testDaySum = VKPAY_DAY_LIMIT
+
+        // Act
+        val result = checkDaylyLimit(card = testCard, currentPayment = testDaySum)
+
+        // Assert
+        assertEquals(true, result)
+    }
+
+    @Test
+    fun checkDaylyLimit_Cards_less10() {
+        // Arrange
+        val testCard: Cards = Cards.Mastercard
+        val testDaySum = CARDS_DAY_LIMIT - 10
+
+        // Act
+        val result = checkDaylyLimit(card = testCard, currentPayment = testDaySum)
+
+        // Assert
+        assertEquals(true, result)
+    }
+
+    @Test
+    fun checkDaylyLimit_Cards_more10() {
+        // Arrange
+        val testCard: Cards = Cards.Mir
+        val testDaySum = CARDS_DAY_LIMIT + 10
+
+        // Act
+        val result = checkDaylyLimit(card = testCard, currentPayment = testDaySum)
+
+        // Assert
+        assertEquals(false, result)
+    }
+
+    @Test
+    fun checkDaylyLimit_Cards_exact() {
+        // Arrange
+        val testCard: Cards = Cards.Visa
+        val testDaySum = CARDS_DAY_LIMIT
 
         // Act
         val result = checkDaylyLimit(card = testCard, currentPayment = testDaySum)
